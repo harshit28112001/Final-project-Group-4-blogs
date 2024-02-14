@@ -1,0 +1,25 @@
+name: harshit-dashboard-ci-pipeline
+trigger:
+- none
+stages:
+- stage:
+  jobs:
+  - job:
+    pool: 
+      harshitpool
+    steps:
+    - task: Maven@4
+      displayName: 'Build-jar-File-dashboard'
+      inputs:
+        mavenPOMFile: 'pom.xml'
+        goals: 'install'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        sonarQubeRunAnalysis: false
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'harshitdockerhub'
+        repository: 'harshit281/frontendproject_1'
+        command: 'buildAndPush'
+        dockerfile: 'dashboard.df'
+        tags: 'dashboard-image-itc'

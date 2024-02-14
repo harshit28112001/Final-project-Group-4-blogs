@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    overflow-x: hidden;
+  }
+  /* @media (max-width: 767px) {
+    /* Override the default styles to show the horizontal scrollbar */
+    /* body {
+        overflow-x: hidden; /* or overflow-x: scroll; */
+ 
